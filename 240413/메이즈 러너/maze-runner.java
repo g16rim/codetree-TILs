@@ -67,16 +67,20 @@ public class Main {
 				for (int x = 1; x <= n - dist + 1; x++) { // 정사각형 시작 좌표
 					for (int y = 1; y <= n - dist + 1; y++) {
 						if (r[i] >= x && r[i] < x + dist && c[i] >= y && c[i] < y + dist) { // 참가자
+							// System.out.println(i + "번 참가자 " + dist + " " + x + " " + y);
 							if (r[0] >= x && r[0] < x + dist && c[0] >= y && c[0] < y + dist) { // 출구
 								// 찾았다. 다음 사람 넘어가기
 								if (dist < l) {
 									l = dist;
 									sx = x;
 									sy = y;
-								} else {
-									if (sx >= x) {
+									// System.out.println(i + " " + sx + " " + sy);
+								} else if (dist == l) {
+									if (x < sx) {
 										sx = x;
-										if (sy > y) {
+										sy = y;
+									} else if (sx == x) {
+										if (y < sy) {
 											sy = y;
 										}
 									}
