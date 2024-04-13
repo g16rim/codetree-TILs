@@ -32,19 +32,19 @@ public class Main {
 		r[0] = Integer.parseInt(st.nextToken());
 		c[0] = Integer.parseInt(st.nextToken());
 
-		boolean allArrived = false;
 		for (int t = 1; t <= k; t++) {
 			// 참가자 이동
 			for (int i = 1; i <= m; i++) {
+				if (r[i] == 0 && c[i] == 0) continue;
 				movePiece(i);
 			}
-			// 미로 회전
-			rotateMap();
 			// 모두 도착했으면
 			if (cnt == m) break;
+			// 미로 회전
+			rotateMap();
 //			printMap();
-//			printPos();
-//			System.out.println(t + "초 이동 " + Arrays.toString(dist));
+			// printPos();
+			// System.out.println(t + "초 이동 " + Arrays.toString(dist));
 		}
 		StringBuilder sb = new StringBuilder();
 		int result = 0;
@@ -119,7 +119,7 @@ public class Main {
 	}
 	
 	static int[][] copyArr() {
-//		System.out.println("copyArr: " + l + " " + sx + " " + sy);
+		// System.out.println("copyArr: " + l + " " + sx + " " + sy);
 		int[][] temp = new int[l][l];
 		for (int i = 0; i < l; i++) {
 			for (int j = 0; j < l; j++) {
@@ -167,8 +167,6 @@ public class Main {
 				cnt++;
 				return;
 			} else if (getDistance(nr, nc, r[0], c[0]) < d) {
-//				System.out.println("변화: " + idx + "번째 " + nr + " " + nc);
-//				printPos();
 				d = getDistance(nr, nc, r[0], c[0]);
 				moved = true;
 				dir = i;
@@ -180,6 +178,8 @@ public class Main {
 			r[idx] += dr[dir];
 			c[idx] += dc[dir];
 		}
+		// System.out.println("변화: " + idx + "번째 ");
+		// printPos();
 	}
 
 	static void printPos() {
